@@ -1,6 +1,10 @@
 $(function() {
   console.log('Auth loaded...');
+  auth.checkLoggedInStatus();
   auth.bindLoginForm();
+  auth.bindSignUpForm();
+  // auth.bindSwitchFormLinks();
+  auth.bindLogoutLink();
 });
 
 var auth = auth || {};
@@ -19,7 +23,6 @@ auth.submitSignUpForm = function(){
   var payload = {
     user: {
       username: username,
-      email : email,
       password: password
     }
   };
@@ -29,7 +32,21 @@ auth.submitSignUpForm = function(){
     .fail(auth.signUpFailure)
 };
 
+auth.bindSignUpForm = function(){
+  $('#sign-up-form').on('submit', function(e) {
+    e.preventDefault();
+    auth.submitSignUpForm();
+  });
+};
 
+auth.signUpSuccess = function(data, status, jqXHR) {
+  console.log(data, status, jqXHR);
+  // should show a success alert
+}
+
+auth.signUpFailure = function(jqXHR) {
+  auth.showAlert("There was an error. Try again!");
+}
 
 // Functions for Log In
 auth.bindLoginForm = function(){
@@ -56,13 +73,20 @@ auth.submitLoginForm = function(){
 
 auth.loginSuccess = function( data, status, jqXHR){
   Cookies.set("jwt_token", data.token);
-  // auth.setLoggedInState();
+  auth.setLoggedInState();
 };
 
 auth.loginFailure = function(jqXHR){
   if( jqXHR == 401 ){
     auth.showAlert("Invalid Credentials");
   }
+};
+
+auth.setLoggedInState = function(){
+  // $(".forms.container").hide();
+  // $("#logged-in-content").fadeIn(1000);
+  $("body").css("background-color","green")
+  auth.users.init();
 };
 
 
@@ -72,3 +96,55 @@ auth.showAlert = function(msg){
     $(this).fadeOut(1000);
   })
 };
+
+auth.users = {
+  init: function(){
+      auth.users.getAll()
+        .done(function(users){
+          auth.users.renderUsers(users);
+        })
+        .fail( function(jqXHR){
+            console.log(jqHXR);
+        });
+  },
+  getAll: function(){
+    return $.getJSON("/api/users");
+  },
+  renderUsers: function(users){
+    var $container = $("#users-container");
+    users.forEach( function(user){
+      var $user = $("<li>");
+      $user.html("Username: " + user.username);
+      $container.append($user);
+    });
+  }
+};
+
+auth.bindLogoutLink = function(){
+  $("#log-out-link").on("click", function(e){
+    console.log("click");
+    Cookies.remove("jwt_token");
+    auth.checkLoggedInStatus();
+  } );
+};
+
+auth.checkLoggedInStatus= function(){
+  var token = auth.getToken();
+  if(token){
+    auth.setLoggedInState();
+  } else {
+    auth.setLoggedOutState();
+  }
+};
+
+auth.getToken = function(){
+  return Cookies.get("jwt_token");
+}
+
+///// TODO Design Logged Out vs Logged IN State
+
+auth.setLoggedOutState = function() {
+  $("body").css("background-color","red")
+  // $('#logged-in-content').hide();
+  // $('.forms.container').fadeIn(1000);
+}
