@@ -44,6 +44,9 @@ auth.bindSignUpForm = function(){
 
 auth.signUpSuccess = function(data, status, jqXHR) {
   console.log(data, status, jqXHR);
+  auth.showAlert("Welcome!");
+  makeDisplayed($("#account-info-form"))
+  makeHidden($("#sign-up-form"));
   // should show a success alert
 }
 
@@ -90,8 +93,9 @@ auth.loginFailure = function(jqXHR){
 auth.setLoggedInState = function(){
   // $(".forms.container").hide();
   // $("#logged-in-content").fadeIn(1000);
-  $("body").css("background-color","green")
-  makeDisplayed($("#logged-in-nav"))
+  $("body").css("background-color","green");
+  makeDisplayed($("#logged-in-nav"));
+  makeHidden($("#log-in-form"));
   auth.users.init();
 };
 
@@ -105,8 +109,8 @@ function switchDisplay(DOMelement){
 function makeHidden(DOMelement){
   if(DOMelement.hasClass('displayed')){
     DOMelement.toggleClass('displayed');
-  } else if (DOMelement.hasClass('hidden')) {
-  } else {
+  }
+  if (!DOMelement.hasClass('hidden')) {
     DOMelement.toggleClass('hidden');
   }
 }
@@ -114,10 +118,10 @@ function makeHidden(DOMelement){
 function makeDisplayed(DOMelement){
   if(DOMelement.hasClass('hidden')){
     DOMelement.toggleClass('hidden');
-  } else if (DOMelement.hasClass('displayed')) {
-  } else {
+  };
+  if (!DOMelement.hasClass('displayed')) {
     DOMelement.toggleClass('displayed');
-  }
+  };
 }
 
 function switchClickHandler(clickElement,DOMelement,secondDOMelement,thirdDOMelement){
@@ -173,10 +177,12 @@ auth.checkLoggedInStatus= function(){
   var token = auth.getToken();
   if(token){
     makeDisplayed($("#logged-in-nav"))
+    makeHidden($("#sign-up-form"))
     auth.setLoggedInState();
   } else {
     auth.setLoggedOutState();
     makeHidden($("#logged-in-nav"))
+    makeDisplayed($("#sign-up-form"))
 
   }
 };

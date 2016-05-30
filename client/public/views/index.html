@@ -11,11 +11,12 @@
     <!-- Cookies lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.min.js" charset="utf-8"></script>
     <script src="/js/auth.js" charset="utf-8"></script>
+    <script src="/js/kiteLogic.js" charset="utf-8"></script>
 
     <script src="/js/scripts.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1> Hello World </h1>
+    <h1> Wind's Up! </h1>
     <form id="sign-up-form" class="displayed">
       <input type="text" placeholder="Email" name="username">
       <input type="password" placeholder="Password" name="password">
@@ -38,10 +39,11 @@
     </form>
 
     <nav id="logged-in-nav" class="hidden">
+      <a id="my-account-link" href="#">My Account</a>
       <a id="log-out-link" href="#">Log out</a>
     </nav>
 
-    <form id="account-info-form">
+    <form id="account-info-form" class="hidden">
       <input type="text" placeholder="Weight">
       <select>
         <option value="cabrinha">Cabrinha</option>
