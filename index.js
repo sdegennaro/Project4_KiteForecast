@@ -11,7 +11,7 @@ var dotEnv          = require('dotenv').config(),
 
 // connect to db
 // process.env.MONGOLAB_URI is needed for when we deploy to Heroku
-mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/auth_template_app" );
+mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/kite_forecast" );
 
 // log requests to STDOUT
 app.use(morgan('dev'));
@@ -39,5 +39,5 @@ app.use('/api/users', apiUsersRouter);
 // process.env.PORT is needed for when we deploy to Heroku
 var port = process.env.PORT || 3000;
 app.listen( port, function() {
-  console.log("free tacos at 3000");
+  console.log("wind's up at 3000");
 });
