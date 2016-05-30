@@ -5,6 +5,9 @@ $(function() {
   auth.bindSignUpForm();
   // auth.bindSwitchFormLinks();
   auth.bindLogoutLink();
+  switchClickHandler($("#have-account-link"),$("#sign-up-form"),$("#log-in-form"));
+  switchClickHandler($("#need-account-link"),$("#sign-up-form"),$("#log-in-form"));
+
 });
 
 var auth = auth || {};
@@ -77,6 +80,8 @@ auth.loginSuccess = function( data, status, jqXHR){
 };
 
 auth.loginFailure = function(jqXHR){
+  auth.showAlert("There was an error. Try again!");
+// TODO not sure why the if statement below isn't working
   if( jqXHR == 401 ){
     auth.showAlert("Invalid Credentials");
   }
@@ -86,11 +91,47 @@ auth.setLoggedInState = function(){
   // $(".forms.container").hide();
   // $("#logged-in-content").fadeIn(1000);
   $("body").css("background-color","green")
+  makeDisplayed($("#logged-in-nav"))
   auth.users.init();
 };
 
 
 // Multi purpose functions
+function switchDisplay(DOMelement){
+  DOMelement.toggleClass('hidden');
+  DOMelement.toggleClass('displayed');
+};
+
+function makeHidden(DOMelement){
+  if(DOMelement.hasClass('displayed')){
+    DOMelement.toggleClass('displayed');
+  } else if (DOMelement.hasClass('hidden')) {
+  } else {
+    DOMelement.toggleClass('hidden');
+  }
+}
+
+function makeDisplayed(DOMelement){
+  if(DOMelement.hasClass('hidden')){
+    DOMelement.toggleClass('hidden');
+  } else if (DOMelement.hasClass('displayed')) {
+  } else {
+    DOMelement.toggleClass('displayed');
+  }
+}
+
+function switchClickHandler(clickElement,DOMelement,secondDOMelement,thirdDOMelement){
+  clickElement.on('click', function(){
+    switchDisplay(DOMelement);
+    if(secondDOMelement){
+      switchDisplay(secondDOMelement);
+    };
+    if(thirdDOMelement){
+      switchDisplay(thirdDOMelement);
+    };
+  });
+};
+
 auth.showAlert = function(msg){
   $("#alert-msg").text(msg).fadeIn(1000, function(){
     $(this).fadeOut(1000);
@@ -131,9 +172,12 @@ auth.bindLogoutLink = function(){
 auth.checkLoggedInStatus= function(){
   var token = auth.getToken();
   if(token){
+    makeDisplayed($("#logged-in-nav"))
     auth.setLoggedInState();
   } else {
     auth.setLoggedOutState();
+    makeHidden($("#logged-in-nav"))
+
   }
 };
 
