@@ -25,5 +25,5 @@ chooseKite = function(weightLb, windKnots){
     }
   };
   console.log(kiteArray[rowIndex][colIndex]);
-
+  return kiteArray[rowIndex][colIndex]
 }

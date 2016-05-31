@@ -28,7 +28,11 @@ usersRouter.get('/', function(req, res, next) {
   });
 });
 
-usersRouter.put("/editme", function(req, res){
+usersRouter.put("/updateaccount", function(req, res){
+  console.log(req.user)
+  req.user.weight = data.weight
+  console.log(req.user)
+
   //update req.user
   //send back whatever res code makes sense to you
 });//put

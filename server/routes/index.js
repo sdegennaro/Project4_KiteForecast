@@ -10,4 +10,8 @@ router.get('/', function(req, res, next) {
   res.sendFile( path.resolve('client/public/views/index.html') );
 });
 
+router.get('/key',function(req,res,next){
+  res.json({API_KEY: process.env.WEATHER_API_KEY})
+})
+
 module.exports = router;

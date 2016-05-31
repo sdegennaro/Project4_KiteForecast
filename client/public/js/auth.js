@@ -59,8 +59,24 @@ auth.signUpFailure = function(jqXHR) {
 
 // Functions for Update User Info
 auth.bindAccountForm = function(){
-
+  
 };
+
+auth.updateAccount = function(){
+
+  $.ajax({
+    method: "put",
+    data: {user: {weight: "150"}},
+    url: "api/users/updateaccount"
+  });
+}
+
+
+
+// puppiesAPI.update = function( puppyId, changes ) {
+//   var url = '/api/puppies/' + puppyId;
+//   return makeAjaxCall('put', url, changes);
+// }
 
 // Functions for Log In
 auth.bindLoginForm = function(){

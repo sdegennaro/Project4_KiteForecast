@@ -19,7 +19,7 @@
     <script src="/js/weatherAPIresource.js" charset="utf-8"></script>
     <script src="/js/scripts.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-controller="MainController">
     <h1> Wind's Up! </h1>
     <form id="sign-up-form" class="displayed">
       <input type="text" placeholder="Email" name="username">
@@ -43,18 +43,38 @@
     </form>
 
     <nav id="logged-in-nav" class="hidden">
+      <a ng-click="renderForecast()" id="my-forecast-link" href="#">My Forecast</a>
       <a id="my-account-link" href="#">My Account</a>
-      <a id="log-out-link" href="#">Log out</a>
+      <a ng-click="clearAccountForm()" id="log-out-link" href="#">Log out</a>
     </nav>
 
     <form id="account-info-form" class="hidden">
-      <input type="text" placeholder="Weight">
-      <select>
+      <input type="text" ng-model="longitude" placeholder="Longitude">
+      <input type="text" ng-model="latitude" placeholder="Latitude">
+      <input type="text" ng-model="weight" placeholder="Weight">
+      <select ng-model="kiteBrand">
         <option value="cabrinha">Cabrinha</option>
         <option value="north">North</option>
         <option value="best">Best</option>
         <option value="other">Other</option>
       </select>
-      <button type="submit">Save</button>
+      <button ng-click="updateAccount(longitude,latitude,weight,kiteBrand)" type="submit">Save</button>
+    </form>
+
+    <form id="general-forecast-form" class="displayed">
+      <input type="text" ng-model="longitude" placeholder="Longitude">
+      <input type="text" ng-model="latitude" placeholder="Latitude">
+      <input type="text" ng-model="weight" placeholder="Rider Weight">
+      <button type="submit" id="general-forecast-button">Get Forecast</button>
+    </form>
+
+      <div id="five-day-forecast-container">
+        <div id="day-one-forecast-container" class="forecast-container"></div>
+        <div id="day-two-forecast-container" class="forecast-container"></div>
+        <div id="day-three-forecast-container" class="forecast-container"></div>
+        <div id="day-four-forecast-container" class="forecast-container"></div>
+        <div id="day-five-forecast-container" class="forecast-container"></div>
+        <div>{{forecast}}</div>
+      </div>
   </body>
 </html>

@@ -25,7 +25,7 @@ passport.use(new JwtStrategy(JwtOpts, function(jwt_payload, done) {
 
     // we search the db by username because we signed our token with a username
     // change accordingly
-    User.findOne({username: jwt_payload._doc.username}, function(err, user) {
+    User.findOne({username: jwt_payload.username}, function(err, user) {
         if (err) {
             return done(err, false);
         }
