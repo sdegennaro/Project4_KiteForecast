@@ -45,14 +45,22 @@ auth.bindSignUpForm = function(){
 auth.signUpSuccess = function(data, status, jqXHR) {
   console.log(data, status, jqXHR);
   auth.showAlert("Welcome!");
+  console.log("token");
+  console.log( data.token );
+  Cookies.set("jwt_token", data.token);
   makeDisplayed($("#account-info-form"))
   makeHidden($("#sign-up-form"));
   // should show a success alert
-}
+};
 
 auth.signUpFailure = function(jqXHR) {
   auth.showAlert("There was an error. Try again!");
-}
+};
+
+// Functions for Update User Info
+auth.bindAccountForm = function(){
+
+};
 
 // Functions for Log In
 auth.bindLoginForm = function(){

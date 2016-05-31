@@ -23,7 +23,9 @@ JwtOpts.secretOrKey = process.env.JWT_SECRET;
 passport.use(new JwtStrategy(JwtOpts, function(jwt_payload, done) {
     console.log(jwt_payload);
 
-    User.findOne({id: jwt_payload.sub}, function(err, user) {
+    // we search the db by username because we signed our token with a username
+    // change accordingly
+    User.findOne({username: jwt_payload._doc.username}, function(err, user) {
         if (err) {
             return done(err, false);
         }

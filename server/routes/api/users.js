@@ -1,7 +1,8 @@
 var express             = require('express'),
     usersRouter         = express.Router(),
     passport            = require('../../lib/passportStrategy.js'),
-    User                = require('../../models/user.js');
+    User                = require('../../models/user.js'),
+    jwt                 = require('jsonwebtoken');
 
 
 // Create a new user
@@ -9,7 +10,11 @@ usersRouter.post('/', function(req, res, next) {
 
   User.create(req.body.user, function( err, dbUser ) {
     if (err) { res.status(500).end() }
-    res.json( dbUser );
+
+    var jtoken = jwt.sign( dbUser.username, process.env.JWT_SECRET, { expiresInMinutes: 1440 } );
+    res.json( { user: dbUser,
+                token: jtoken
+              });
   });
 });
 
@@ -22,5 +27,10 @@ usersRouter.get('/', function(req, res, next) {
     res.json( dbUsers );
   });
 });
+
+usersRouter.put("/editme", function(req, res){
+  //update req.user
+  //send back whatever res code makes sense to you
+});//put
 
 module.exports = usersRouter;
