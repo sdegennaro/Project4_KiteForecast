@@ -65,15 +65,15 @@
       <input type="text" ng-model="longitude" placeholder="Longitude">
       <input type="text" ng-model="latitude" placeholder="Latitude">
       <input type="text" ng-model="weight" placeholder="Rider Weight">
-      <button type="submit" id="general-forecast-button">Get Forecast</button>
+      <button type="submit" ng-click="renderForecast()" id="general-forecast-button">Get Forecast</button>
     </form>
 
       <div id="five-day-forecast-container">
-        <div id="day-one-forecast-container" class="forecast-container"></div>
-        <div id="day-two-forecast-container" class="forecast-container"></div>
-        <div id="day-three-forecast-container" class="forecast-container"></div>
-        <div id="day-four-forecast-container" class="forecast-container"></div>
-        <div id="day-five-forecast-container" class="forecast-container"></div>
+        <div id="day-one-forecast-container" ng-bind="dayOneForecast" class="forecast-container"></div>
+        <div id="day-two-forecast-container" ng-bind="dayTwoForecast" class="forecast-container"></div>
+        <div id="day-three-forecast-container" ng-bind="dayThreeForecast" class="forecast-container"></div>
+        <div id="day-four-forecast-container" ng-bind="dayFourForecast" class="forecast-container"></div>
+        <div id="day-five-forecast-container" ng-bind="dayFiveForecast" class="forecast-container">{{dayFiveForecast}}</div>
         <div>{{forecast}}</div>
       </div>
   </body>
