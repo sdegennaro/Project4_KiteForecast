@@ -33,10 +33,13 @@ checkWindConditions = function(windMPH,windGusts){
   var gustKnots = windGusts*0.868976;
   if (windKnots < 10){
     console.log("sorry, bro, not enough wind");
+    return false;
   }
   if (windKnots > 34){
     console.log("whooaaa, way too much wind man");
+    return false;
   } else{
+    return true;
     console.log("thank the wind gods, wind's up!");
   }
 
@@ -53,3 +56,13 @@ checkWeatherConditions = function(weatherCode){
     console.log("sorry man, sky's falling. no surf today");
   };
 };
+
+makeKiteArr = function(weightLb, arrOfForecasts){
+  var kiteRecArr = []
+  for (var i = 0; i < arrOfForecasts.length; i++) {
+    console.log(arrOfForecasts[i].windspeedMiles);
+    console.log(weightLb);
+    chooseKite(weightLb, arrOfForecasts[i].windspeedMiles)
+  }
+  console.log(kiteRecArr);
+}

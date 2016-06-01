@@ -75,20 +75,18 @@
     </form>
 
       <div id="five-day-forecast-container">
-        <div id="day-one-forecast-container" class="forecast-container">
-          <h3>{{dayOneForecast.date}}</h3>
-          <div>
-            <h4>{{dayOneForecast.hourly[3].time}}</h4>
-            <h4>{{dayOneForecast.hourly[3].windspeedMiles}}</h4>
+        <div class="forecast-container" ng-repeat="dayForecast in dailyForecasts">
+          <h3>{{dayForecast.date}}</h3>
+          <div ng-repeat= "hour in dayForecast.hourly">
+            <div ng-if="hour.time >= 900 && hour.time <=1800">
+            <h4>{{hour.time}}</h4>
+            <h4>{{hour.windspeedMiles}}</h4>
+            <h4>Your kite should be: {{chooseKite(weight,dayForecast.hourly[3].windspeedMiles)}}</h4>
 
-              {{dayOneForecast.hourly[3]}}</div>
+              {{dayForecast.hourly[3]}}
+            </div>
+            </div>
         </div>
-        <div id="day-two-forecast-container" class="forecast-container">
-          {{dayTwoForecast.date}}
-        </div>
-        <div id="day-three-forecast-container" class="forecast-container">{{dayThreeForecast.date}}</div>
-        <div id="day-four-forecast-container" class="forecast-container">{{dayFourForecast.date}}</div>
-        <div id="day-five-forecast-container" class="forecast-container">{{dayFiveForecast.date}}</div>
         <div>{{forecast}}</div>
       </div>
   </body>
