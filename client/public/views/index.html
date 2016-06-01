@@ -22,7 +22,7 @@
   <body ng-controller="MainController">
     <div class="fullscreen-bg">
       <!-- <object width="425" height="344"><param name="movie" value="http://swf.tubechop.com/tubechop.swf?vurl=tmqml7zRNiU&start=114.8&end=120.49&cid=8058641"></param><embed src="http://swf.tubechop.com/tubechop.swf?vurl=tmqml7zRNiU&start=114.8&end=120.49&cid=8058641" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed></object> -->
-      <iframe class="bg-video" frameborder="0" height="100%" width="100%"
+      <iframe class="bg-video" frameborder="0" height="100%" width="100%" volume="0"
         src="https://www.youtube.com/embed/videoseries?list=PLOLY60w6PPsUdasm2OfTCkoseVq47ppGx&autoplay=1&loop=1&controls=0&showinfo=0&autohide=1&start=115&end=120">
       </iframe>
     </div>
@@ -75,11 +75,20 @@
     </form>
 
       <div id="five-day-forecast-container">
-        <div id="day-one-forecast-container" ng-bind="dayOneForecast" class="forecast-container"></div>
-        <div id="day-two-forecast-container" ng-bind="dayTwoForecast" class="forecast-container"></div>
-        <div id="day-three-forecast-container" ng-bind="dayThreeForecast" class="forecast-container"></div>
-        <div id="day-four-forecast-container" ng-bind="dayFourForecast" class="forecast-container"></div>
-        <div id="day-five-forecast-container" ng-bind="dayFiveForecast" class="forecast-container">{{dayFiveForecast}}</div>
+        <div id="day-one-forecast-container" class="forecast-container">
+          <h3>{{dayOneForecast.date}}</h3>
+          <div>
+            <h4>{{dayOneForecast.hourly[3].time}}</h4>
+            <h4>{{dayOneForecast.hourly[3].windspeedMiles}}</h4>
+
+              {{dayOneForecast.hourly[3]}}</div>
+        </div>
+        <div id="day-two-forecast-container" class="forecast-container">
+          {{dayTwoForecast.date}}
+        </div>
+        <div id="day-three-forecast-container" class="forecast-container">{{dayThreeForecast.date}}</div>
+        <div id="day-four-forecast-container" class="forecast-container">{{dayFourForecast.date}}</div>
+        <div id="day-five-forecast-container" class="forecast-container">{{dayFiveForecast.date}}</div>
         <div>{{forecast}}</div>
       </div>
   </body>
