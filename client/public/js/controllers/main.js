@@ -68,4 +68,11 @@ angular
         console.log(kiteArray[rowIndex][colIndex]);
         return kiteArray[rowIndex][colIndex]
       }
+
+      $scope.formatTime = function(inputTime){
+        militaryTime = parseInt(inputTime)
+        if (militaryTime < 1200){
+          
+        }
+      }
 }])
