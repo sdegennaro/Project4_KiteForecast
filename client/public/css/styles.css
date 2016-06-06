@@ -7,7 +7,50 @@
   display:block;
 }
 
-/**/video background help from http://slicejack.com/fullscreen-html5-video-background-css/
+
+
+.top-bar-container{
+  background-color: rgba(0,0,0,0.5);
+  color: rgb(224, 224, 224);
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+}
+
+.top-bar-container * {
+  padding: 0 2%;
+
+}
+
+.top-bar-container a {
+  color:rgb(224, 224, 224);
+}
+
+.top-bar-container nav {
+  width: 30%;
+  text-align: right;
+  right: 0;
+  position: absolute;
+  top: 50%;
+  margin-right: 2em;
+}
+
+
+.main-container {
+  top: 25%;
+  position: fixed;
+  margin-left: 2%;
+  padding: 2% 2%;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.main-container h6{
+  margin: 1em 0 0.5em;
+}
+
+/*video background help from http://slicejack.com/fullscreen-html5-video-background-css/*/
 
 .fullscreen-bg {
     position: fixed;

@@ -22,19 +22,21 @@ usersRouter.use(passport.authenticate('jwt', { session: false}));
 
 // GET all users
 usersRouter.get('/', function(req, res, next) {
-
   User.find(function( err, dbUsers ){
     res.json( dbUsers );
   });
 });
 
-usersRouter.put("/updateaccount", function(req, res){
-  console.log(req.user)
-  req.user.weight = data.weight
-  console.log(req.user)
+// usersRouter.get('/currentuser', function(req, res, next) {
+//   res.json( req.user );
+// });
 
+// usersRouter.put("/updateaccount", function(req, res){
+//   console.log(req.user)
+//   req.user.weight = data.weight
+//   console.log(req.user)
+// });
   //update req.user
   //send back whatever res code makes sense to you
-});//put
 
 module.exports = usersRouter;

@@ -18,6 +18,7 @@ auth.submitSignUpForm = function(){
   var username = $form.find('[name=username]').val();
   var password = $form.find('[name=password]').val();
   var confirm  = $form.find('[name=password_confirm]').val();
+  var weight = $form.find('[name=weight]').val();
 
   if (confirm !== password) {
     return auth.showAlert("Passwords do not match!");
@@ -26,7 +27,8 @@ auth.submitSignUpForm = function(){
   var payload = {
     user: {
       username: username,
-      password: password
+      password: password,
+      weight: weight
     }
   };
 
@@ -48,9 +50,10 @@ auth.signUpSuccess = function(data, status, jqXHR) {
   console.log("token");
   console.log( data.token );
   Cookies.set("jwt_token", data.token);
-  makeDisplayed($("#account-info-form"))
+  makeDisplayed($("#general-forecast-form"))
   makeHidden($("#sign-up-form"));
   // should show a success alert
+
 };
 
 auth.signUpFailure = function(jqXHR) {
@@ -59,24 +62,20 @@ auth.signUpFailure = function(jqXHR) {
 
 // Functions for Update User Info
 auth.bindAccountForm = function(){
-  
+
 };
 
-auth.updateAccount = function(){
-
-  $.ajax({
-    method: "put",
-    data: {user: {weight: "150"}},
-    url: "api/users/updateaccount"
-  });
-}
-
-
-
-// puppiesAPI.update = function( puppyId, changes ) {
-//   var url = '/api/puppies/' + puppyId;
-//   return makeAjaxCall('put', url, changes);
+// auth.updateAccount = function(){
+//
+//   $.ajax({
+//     method: "put",
+//     data: {user: {weight: "150"}},
+//     url: "api/users/updateaccount"
+//   });
 // }
+
+
+
 
 // Functions for Log In
 auth.bindLoginForm = function(){
@@ -118,9 +117,13 @@ auth.setLoggedInState = function(){
   // $(".forms.container").hide();
   // $("#logged-in-content").fadeIn(1000);
   $("body").css("background-color","green");
-  makeDisplayed($("#logged-in-nav"));
+  makeDisplayed($("#general-forecast-form"));
   makeHidden($("#log-in-form"));
+  makeHidden($("#logged-out-nav"))
+  makeDisplayed($("#logged-in-nav"))
   auth.users.init();
+  // auth.users.getCurrentUser();
+
 };
 
 
@@ -173,9 +176,18 @@ auth.users = {
           auth.users.renderUsers(users);
         })
         .fail( function(jqXHR){
-            console.log(jqHXR);
+            // console.log(jqHXR);
         });
   },
+  // getCurrentUser: function(){
+  //   return $.ajax({
+  //     url: "api/users/currentuser",
+  //     method: "GET",
+  //     success: function(data){
+  //       console.log(data.username);
+  //     }
+  //   })
+  // },
   getAll: function(){
     return $.getJSON("/api/users");
   },
@@ -205,8 +217,8 @@ auth.checkLoggedInStatus= function(){
     auth.setLoggedInState();
   } else {
     auth.setLoggedOutState();
-    makeHidden($("#logged-in-nav"))
-    makeDisplayed($("#sign-up-form"))
+    // makeHidden($("#logged-in-nav"))
+    // makeDisplayed($("#logged-out-nav"))
 
   }
 };
@@ -221,4 +233,9 @@ auth.setLoggedOutState = function() {
   $("body").css("background-color","red")
   // $('#logged-in-content').hide();
   // $('.forms.container').fadeIn(1000);
+  $("#log-in-form").trigger("reset")
+  $("#sign-up-form").trigger("reset")
+  $("#general-forecast-form").trigger("reset")
+  makeHidden($("#logged-in-nav"))
+  makeDisplayed($("#logged-out-nav"))
 }

@@ -72,7 +72,17 @@ angular
       $scope.formatTime = function(inputTime){
         militaryTime = parseInt(inputTime)
         if (militaryTime < 1200){
-          
+
         }
+      }
+
+      $scope.logInClick = function(){
+        makeHidden($("#general-forecast-form"))
+        makeDisplayed($("#log-in-form"))
+      }
+
+      $scope.signUpClick = function(){
+        makeHidden($("#general-forecast-form"))
+        makeDisplayed($("#sign-up-form"))
       }
 }])
