@@ -1,3 +1,6 @@
+body, input, button{
+  font-family: 'Muli', sans-serif;
+}
 
 .hidden{
   display: none;
@@ -50,7 +53,7 @@
   margin: 1em 0 0.5em;
 }
 
-/*video background help from http://slicejack.com/fullscreen-html5-video-background-css/*/
+/*video background code from http://slicejack.com/fullscreen-html5-video-background-css/*/
 
 .fullscreen-bg {
     position: fixed;
