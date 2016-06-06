@@ -11,7 +11,7 @@ CSS
 HTML
 
 Third Party APIs:
-[World Weather Online Local API](http://developer.worldweatheronline.com/api/local-city-town-weather-api.aspx)
+[World Weather Online Marine Weather API](https://developer.worldweatheronline.com/api/marine-weather-api.aspx)
 
 Templates:
 [General Assembly Authorization Template](https://github.com/rapala61/express_auth_student_template)
@@ -19,17 +19,15 @@ Templates:
 
 ### USER STORIES
 
+The user must be able to register an account with username, password, and weight.
+
 
 
 ### SCREENSHOTS
-![alt tag]()
-![alt tag]()
-![alt tag]()
+![alt tag](http://i.imgur.com/OHjnPFz.png)
+![alt tag](http://i.imgur.com/HHKwyr3.png)
 
-### APPROACH
-
-
-
+<!-- ### APPROACH -->
 
 ### FUTURE FEATURES
-At present, text messages must be sent manually through the '/text' route. In future versions of this app, we would add restrictions so that only users who have admin status could access that route (currently all users default as non-admins). We would also like to add the ability for a user to specify a time of day to receive their text message and for the program to send it automatically.
+Future versions of the app will prepopulate the forecast search for logged in users with their saved weight, latitude, and longitude. Users would also have the option of entering zip code and a longitude and latitude would be saved automatically for them. Future versions could include additional recommendations, such as what kind of wetsuit is needed, based on water temperature. I would also like to replace the background video with something more consistent (i.e. all ocean images).
