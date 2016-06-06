@@ -116,7 +116,7 @@ auth.loginFailure = function(jqXHR){
 auth.setLoggedInState = function(){
   // $(".forms.container").hide();
   // $("#logged-in-content").fadeIn(1000);
-  $("body").css("background-color","green");
+  // $("body").css("background-color","green");
   makeDisplayed($("#general-forecast-form"));
   makeHidden($("#log-in-form"));
   makeHidden($("#logged-out-nav"))
@@ -230,7 +230,7 @@ auth.getToken = function(){
 ///// TODO Design Logged Out vs Logged IN State
 
 auth.setLoggedOutState = function() {
-  $("body").css("background-color","red")
+  // $("body").css("background-color","red")
   // $('#logged-in-content').hide();
   // $('.forms.container').fadeIn(1000);
   $("#log-in-form").trigger("reset")

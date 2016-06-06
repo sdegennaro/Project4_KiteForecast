@@ -83,19 +83,17 @@
         <button type="submit" ng-click="renderForecast()" id="general-forecast-button">Get Forecast</button>
       </form>
 
-        <div id="five-day-forecast-container">
-          <div class="forecast-container" ng-repeat="dayForecast in dailyForecasts">
-            <h3>{{dayForecast.date}}</h3>
-            <div ng-repeat= "hour in dayForecast.hourly">
+        <div id="five-day-forecast-container" class="row">
+          <div class="forecast-container col" ng-repeat="dayForecast in dailyForecasts">
+            <h3>Date: {{dayForecast.date}}</h3>
+            <div class="hour-container" ng-repeat= "hour in dayForecast.hourly">
               <div ng-if="hour.time >= 900 && hour.time <=1800">
-              <h4>{{hour.time}}</h4>
-              <h4>{{hour.windspeedMiles}}</h4>
-              <h4>Your kite should be: {{chooseKite(weight,dayForecast.hourly[3].windspeedMiles)}}</h4>
+              <p>{{hour.time}} o'clock</p>
+              <p>Your kite should be: {{chooseKite(weight,dayForecast.hourly[3].windspeedMiles)}}</p>
 
               </div>
               </div>
           </div>
-          <div>{{forecast}}</div>
         </div>
       </div>
   </body>

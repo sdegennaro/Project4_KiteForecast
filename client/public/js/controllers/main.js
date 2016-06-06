@@ -23,6 +23,7 @@ angular
         // $scope.dayFourForecast = weatherData[3];
         // $scope.dayFiveForecast = weatherData[4];
         // console.log($scope.dayTwoForecast)
+        $('.main-container').css('margin','0% 5% 3%')
       }
 
       setForecastValues = function(weatherData){
@@ -35,7 +36,6 @@ angular
         }
         console.log($scope.goodForecasts);
         $scope.dailyForecasts = [weatherData[0],weatherData[1],weatherData[2],weatherData[3],weatherData[4]];
-        $scope.forecast = chooseKite($scope.weight, 15);
         // makeKiteArr($scope.weight, $scope.dailyForecasts)
         $scope.$apply();
       }
@@ -43,7 +43,7 @@ angular
       $scope.chooseKite = function(weightLb, windMph){
         var windKnots = windMph * 0.868976;
         if(!checkWindConditions(windMph)){
-          return "Can't kite today";
+          return "Can't kite :(";
         }
         // values from Surfer Today chart: http://www.surfertoday.com/board-size-chart/kiteboard
         var weightArray = [95,110,125,140,155,170,185,200,215,230,245,260]
@@ -66,7 +66,7 @@ angular
           }
         };
         console.log(kiteArray[rowIndex][colIndex]);
-        return kiteArray[rowIndex][colIndex]
+        return kiteArray[rowIndex][colIndex] + " meters";
       }
 
       $scope.formatTime = function(inputTime){

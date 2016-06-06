@@ -38,10 +38,10 @@
 }
 
 
-.main-container {
+.main-container{
   top: 25%;
-  position: fixed;
-  margin-left: 2%;
+  position: absolute;
+  margin: 0 25% 3%;
   padding: 2% 2%;
   background-color: rgba(255,255,255,0.7);
 }
@@ -102,4 +102,22 @@
 
 .forecast-container{
   background-color: white;
+  border: 1px solid grey;
+}
+
+.row{
+  display: flex;
+}
+
+.col{
+  flex: 1;
+}
+
+#five-day-forecast-container{
+  margin-top: 2%;
+  width: 100%;
+}
+
+.hour-container{
+  border: 1px solid grey;
 }
